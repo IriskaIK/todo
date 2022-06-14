@@ -12,6 +12,8 @@ body{
     justify-content: center;
 }
 .td_item{
+    transition: background .2s linear;
+
     width: 400px;
     margin-top: 20px;
     margin-right: 20px;
@@ -62,7 +64,6 @@ body{
     padding: 0 5px;
 }
 .task_item:last-child{
-    margin: 0;
 }
 .task_chekbox {
     margin-right: 15px;
@@ -147,6 +148,14 @@ body{
 
 .progress_check:hover{
     color: #17cc26;
+}
+
+.disable-select {
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 

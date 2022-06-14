@@ -4,7 +4,10 @@ import {createInputTask} from './task/createInputTask'
 import{deleteTask} from './task/deleteTask'
 import{moveToComplete} from './progress/moveToComplete'
 import{moveToProgress}from './task/moveToProgress'
-
+import{dragDrop}from './dragdrop/drag'
+import { checkstorage } from './localstorages/localstor'
+import {addToStorage} from './localstorages/addToStorage'
+import {updateStorage} from './localstorages/updateStorage'
 function deleteElem(elem){
     elem.parentElement.removeChild(elem)
 }
@@ -22,23 +25,26 @@ function getDate(){
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
+    
+    checkstorage(Task, moveToProgress, moveToComplete, deleteElem)
+    
     const td_area = document.querySelector('.td_inner')
     const task_inner = document.querySelector('.task_list_inner')
-    const progress_area = document.querySelector('.progress_list')
-    const complete_area = document.querySelector('.complete_list')
+    const progress_area = document.querySelector('.progress_list .task_list_inner')
+    const complete_area = document.querySelector('.complete_list .task_list_inner')
     deleteTask(td_area, deleteElem)
-    createAddBtn(createInputTask, task_inner, getDate, deleteElem, Task)
-
+    createAddBtn(createInputTask, task_inner, getDate, deleteElem, Task, addToStorage)
+    dragDrop(deleteElem, moveToComplete, moveToProgress)
     progress_area.addEventListener('click', (e)=>{
         if (e.target.classList.contains('progress_check')){
             let cur_task = e.target.parentElement
-            moveToComplete(cur_task, complete_area, deleteElem)
+            moveToComplete(cur_task, complete_area, deleteElem, updateStorage)
         }
     })
     task_inner.addEventListener('click', (e)=>{
         if(e.target.classList.contains('task_gear')){
             let cur_task = e.target.parentElement
-            moveToProgress(cur_task, progress_area, deleteElem)
+            moveToProgress(cur_task, progress_area, deleteElem, updateStorage)
         }
     })
 
