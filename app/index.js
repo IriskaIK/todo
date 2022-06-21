@@ -8,6 +8,7 @@ import{dragDrop}from './dragdrop/drag'
 import { checkstorage } from './localstorages/localstor'
 import {addToStorage} from './localstorages/addToStorage'
 import {updateStorage} from './localstorages/updateStorage'
+import {toggleShow} from './task/showMore'
 function deleteElem(elem){
     elem.parentElement.removeChild(elem)
 }
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     deleteTask(td_area, deleteElem)
     createAddBtn(createInputTask, task_inner, getDate, deleteElem, Task, addToStorage)
     dragDrop(deleteElem, moveToComplete, moveToProgress)
+    toggleShow(td_area)
     progress_area.addEventListener('click', (e)=>{
         if (e.target.classList.contains('progress_check')){
             let cur_task = e.target.parentElement

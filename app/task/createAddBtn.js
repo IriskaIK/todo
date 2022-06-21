@@ -3,7 +3,7 @@ function createAddBtn(createInputTask, task_inner, getDate, deleteElem, Task, ad
     let add_btn = document.createElement('div')
     add_btn.className = 'task_add_btn'
     add_btn.innerHTML = `<div class="task_add_inner">
-    <i class="fa-solid fa-plus"></i>
+    <i class="fa-solid fa-plus add_ico"></i>
     <div class="div">Add new task</div>
     </div>`
     task_inner.append(add_btn)
